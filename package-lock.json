@@ -4,8 +4,7 @@
   "description": "A web app showing todays and upcoming weather.",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
   "build": "npx @11ty/eleventy"
   },
   "devDependencies": {
