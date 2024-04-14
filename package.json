@@ -1,0 +1,12 @@
+{
+  "name": "-whether-weather-",
+  "version": "1.0.0",
+  "description": "A web app showing todays and upcoming weather.",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
