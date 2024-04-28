@@ -6,8 +6,25 @@
   <title>(Whether) Weather</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+   <script src="data/weather_data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentCity = "berlin";
+            const currentCityData = weatherData[currentCity + "_daily"]
+            const time = document.getElementById("time");
+            const weatherCode = document.getElementById("weatherCode");
+            const temperature_2m_max = document.getElementById("temperature_2m_max");
+            const wind_speed_10m_max = document.getElementById("wind_speed_10m_max");
+
+            time.innerHTML = currentCityData.daily.time[0];
+            weatherCode.innerHTML = currentCityData.daily.weather_code[0];
+            temperature_2m_max.innerHTML = currentCityData.daily.temperature_2m_max[0]
+            wind_speed_10m_max.innerHTML = currentCityData.daily.wind_speed_10m_max[0]
+        });
+    </script>
 </head>
 <body>
+    <p>The weather code is <span id="weatherCode"></span></p>
 	<header class="columns">
     <div class="column is-3">
       <section>
@@ -20,7 +37,7 @@
      <section>
       <div class="box has-text-right is-shadowless mt-6">
         <p class="title is-1 is-family-code"> Berlin</p>
-        <p class="subtitle is-3 is-family-code">Today</p>
+        <p class="subtitle is-3 is-family-code"><span id="time"></span></p>
       </div>
     </section>
     </div>
@@ -45,7 +62,6 @@
       <figure class="image is-3by2">
        <img src="/images/sun.png" alt="Sun" />
      </figure>
-     <a href="https://www.flaticon.com/free-icons/sun" title="sun icons">Sun icons created by Freepik - Flaticon</a>
    </section>
  </div>
  <div class="column is-3 ml-6 mt-6">
@@ -57,7 +73,7 @@
    </header>
    <article class="card-content has-background-black">
     <p class="card-header-title is-size-4 is-centered has-text-white">
-     12 &deg;C
+     <span id="temperature_2m_max"></span> &deg;C
    </p>
  </article>
 </section>
@@ -71,7 +87,7 @@
     </header>
     <article class="card-content has-background-black">
       <p class="card-header-title is-size-4 is-centered has-text-white">
-        12 Km/H
+        <span id="wind_speed_10m_max"></span> Km/H
       </p>
     </article>
   </section>
@@ -97,7 +113,8 @@
         </div>
         <article class="card-content has-background-black">
           <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
+            <span id="temperature_2m_max"></span> &deg;C
+            <span id="wind_speed_10m_max"></span> Km/H
           </p>
         </article>
       </section>
