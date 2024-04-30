@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
    <script src="data/weather_data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const currentCity = "berlin";
@@ -15,16 +16,55 @@
             const weatherCode = document.getElementById("weatherCode");
             const temperature_2m_max = document.getElementById("temperature_2m_max");
             const wind_speed_10m_max = document.getElementById("wind_speed_10m_max");
+            const dailyData = weatherData[currentCity + "_daily"]
+            const hourlyData = weatherData[currentCity + "_hourly"]
+
 
             time.innerHTML = currentCityData.daily.time[0];
             weatherCode.innerHTML = currentCityData.daily.weather_code[0];
             temperature_2m_max.innerHTML = currentCityData.daily.temperature_2m_max[0]
             wind_speed_10m_max.innerHTML = currentCityData.daily.wind_speed_10m_max[0]
+
+            const image = document.getElementById('weatherCodeImg');
+            image.src = '/images/rain.png';
+
+            const now = dayjs(); // create a new date object that represents this time
+            const currentHour = now.hour(); // 0 - 23 as a number
+
+            // we need the index of the current hour in the time array
+            // we then use that index to query the termperature_2m data
+            const indexOfCurrentHour = hourlyData.time.indexOf(`TodayT${currentHour}:00`);
+            const indexOfCurrentHourTomorrow = hourlyData.time.indexOf(`Today+1T${currentHour}:00`);
+            console.log(`The index of the current hour is : ${indexOfCurrentHour}`);
+            console.log(`The index of the current hour tomorrow is : ${indexOfCurrentHourTomorrow}`);
+
+            const timeElement = document.getElementById("time");
+            const tempElement = document.getElementById("temp");
+
+            const tempTomorrowElement = document.getElementById("tempTomorrow");
+            const dayAfterTomorrowElement = document.getElementById("dayAfterTomorrow");
+
+            const dayElement = document.getElementById("day");
+            const tomorrowElement = document.getElementById("tomorrow");
+
+            timeElement.innerHTML = `${currentHour}:00`;
+            dayElement.innerHTML = now.format("dddd");
+            tomorrowElement.innerHTML = now.add(1, 'day').format("dddd");
+            dayAfterTomorrowElement.innerHTML = now.add(2, 'day').format("dddd");
+
+            tempElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHour];
+            tempTomorrowElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHourTomorrow];
+
+            const todayMaxTemp = dailyData.temperature_2m_max[0];
+            const maxTempElement = document.getElementById("maxTemp");
+            maxTempElement.innerHTML = todayMaxTemp;
         });
     </script>
+    <a href="/amsterdam">Proin</a>
 </head>
 <body>
-    <p>The weather code is <span id="weatherCode"></span></p>
+    <p>The weather code is <span id="weatherCode"></span> </p>
+    <a href="/amsterdam.html">
 	<header class="columns">
     <div class="column is-3">
       <section>
@@ -58,9 +98,10 @@
   </header>
 <main class="columns">
   <div class="column is-3 mt-6">
+
   	<section>
       <figure class="image is-3by2">
-       <img src="/images/sun.png" alt="Sun" />
+       <img src="/images/sun.png" id="weatherCodeImg" alt="Sun" />
      </figure>
    </section>
  </div>
@@ -235,7 +276,6 @@
     </div>
 <div class="column">
  <section>
-  <p></p>
 </section>
 </div>
 </footer>
