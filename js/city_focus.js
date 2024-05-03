@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(weatherCodePlusTwo === 0){
                 weatherPlusTwo = "/images/sun.png";
             } else if(weatherCodePlusTwo >= 1 && weatherCodePlusTwo <= 3){
-                weatherPlusOne = "/images/overcast.png";
+                weatherPlusTwo = "/images/overcast.png";
             } else if(weatherCodePlusTwo >= 51 && weatherCodePlusTwo <= 67){
                 weatherPlusTwo = "/images/rain.png";
             } else if(weatherCodePlusTwo === 80){
