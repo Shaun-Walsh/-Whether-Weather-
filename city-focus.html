@@ -8,246 +8,86 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <script src="/data/weather_data.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>    
-  <script src="/js/city_focus.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/bulma.js"></script>
+  <script src="/js/components/weather-cards.js"></script>
+  <script src="/js/data-store.js"></script>
+
+
 </head>
 <body>
-    <p>The weather code for today is <span id="weatherCodeToday"></span></p>
-    <p>The day after tomorrow is <span id="dayAfterTomorrow"></span></p>
-    <p>The weather code for tomorrow is <span id="weatherCodeTomorrow"></span></p>
-    <p>The temp at the same time tomorrow is <span id="tempTomorrow"></span></p>
-   <header class="columns">
-     <div class="column is-3">
+    <nav class="navbar has-background-info">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <figure class="navimage is-96x96">
+          <img src="/images/favicon.png" alt="Logo"/>
+          </figure>
+        </a>
+        <span class="navbar-burger" data-target="navbarMenu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </span>
+      </div>
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item has-text-white">
+            Home
+          </a>
+          <a class="navbar-item has-text-white">
+            Dashboard
+          </a>
+          <a class="navbar-item has-text-white">
+            Settings
+          </a>
+        </div>
+      </div>
+    </nav>
+   <header class="columns is-centered has-background-info">
+     <div class="column is-3" id="logo box">
        <section>
          <figure class="image is-2by1">
            <img src="/images/logo.png" alt="Logo" />
          </figure>
        </section>
      </div>
-       <div class="column is-4">
+       <div class="column is-4 has-text-white" id="day and location">
          <section>
-           <div class="box has-text-right is-shadowless mt-6">
+           <div class="box has-text-right  mt-6 has-background-warning">
             <p class="title is-1 is-family-code"> <span id="currentCity"></span></p>
             <p class="subtitle is-3 is-family-code"><span id="day"></span></p>
            </div>
          </section>
        </div>
-         <div class="column is-5">
+         <div class="column is-5" id="current time and forecast">
            <section>
-             <div class="box has-background-black is-shadowless mt-6 mr-6">
-               <p class="bd-notification has-text-centered title is-2 is-family-code has-text-white"><span id="timeNow"></span></p>
+             <div class="box has-background-warning mt-6 mr-6">
+               <p class="bd-notification has-text-centered title is-2 is-family-code has-text-black" id="timeNow"></p>
               <div class="columns is-mobile">
                 <div class="column">
-                  <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white"><span id="tempNow"></span>&deg;</p>
+                  <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-black" id="tempNow"></p>
                 </div>
                   <div class="column">
-                    <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white"><span id="windNow"></span>km/h</p>
+                    <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-black" id="windNow"></p>
                   </div>
               </div>
            </section>
          </div>        
    </header>
-   <main class="columns">
-     <div class="column is-3 mt-6">
+   <main class="columns is-centered has-background-info">
+     <div class="column is-3 mt-6" id="weather image today">
   	   <section>
          <figure class="image is-3by2">
           <img id= "weatherToday" alt="Weather">
          </figure>
        </section>
      </div>
-     <div class="column is-3 ml-6 mt-6">
-      <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title is-size-4 is-centered has-text-white">
-          Max temp
-          </p>
-        </header>
-        <article class="card-content has-background-black">
-          <p class="card-header-title is-size-4 is-centered has-text-white">
-          <span id="maxTemp"></span> &deg;C
-          </p>
-        </article>
-      </section>
-     </div>
-     <div class="column is-3 mt-6">
-       <section class="card">
-         <header class="card-header has-background-black">
-          <p class="card-header-title is-size-4 is-centered has-text-white">
-          Max Wind
-          </p>
-         </header>
-         <article class="card-content has-background-black">
-          <p class="card-header-title is-size-4 is-centered has-text-white">
-            <span id="maxWind"></span> Km/H
-          </p>
-         </article>
-       </section>
-     </div>
+
+     
    </main>
-   <footer class=columns>
-     <div class="column">
-       <section>
-         <p></p>
-       </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="daySummary"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherTodaySummary" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummary"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummary"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="tomorrow"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherPlusOne" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusOne"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusOne"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-           <span id="tomorrowPlusOne"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherPlusTwo" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusTwo"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusTwo"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="tomorrowPlusTwo"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-           <img id= "weatherPlusThree" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusThree"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusThree"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="tomorrowPlusThree"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherPlusFour" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusFour"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusFour"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="tomorrowPlusFour"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherPlusFive" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusFive"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusFive"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section class="card">
-         <header class="card-header has-background-black">
-           <p class="card-header-title has-text-white has-background-black has-text-centered">
-            <span id="tomorrowPlusFive"></span>
-           </p>
-         </header>
-      <div class="card-image">
-        <figure class="image is-2by1 has-background-black">
-          <img id= "weatherPlusSix" alt="Weather">
-        </figure>
-      </div>
-      <article class="card-content has-background-black">
-        <p class="title has-text-white has-text-left">
-          <span id="maxTempSummaryPlusSix"></span> &deg;C
-        </p>
-        <p class="title has-text-white has-text-right">
-          <span id="maxWindSummaryPlusSix"></span> Km/H
-        </p>
-      </article>
-      </section>
-     </div>
-     <div class="column">
-       <section>
-         <p></p>
-       </section>
-     </div>
+
+   
+   <footer class="columns is-centered has-background-info">
    </footer>
 </body>
 </html>

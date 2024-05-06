@@ -1,3 +1,37 @@
+dailyData = weatherData["amsterdam_daily"].daily
+
+// function img_from_weather(data, weatherCode, day_of_week) {
+//     let img_src = 'Unknown'
+//     weatherCode = data.weather_code[day_of_week];
+//     console.log(weatherCode)
+//     if(weatherCode === 0){
+//         img_src = "/images/sun.png";
+//     } else if(weatherCode >= 1 && weatherCode <= 3){
+//         img_src = "/images/overcast.png";
+//     } else if(weatherCode >= 51 && weatherCode <= 67){
+//         img_src = "/images/rain.png";
+//     } else if(weatherCode === 80){
+//         img_src = "/images/snow.png";
+//     }
+//     return img_src
+// }
+
+function img_from_weather(weatherCode) {
+    let img_src = 'Unknown'
+    console.log(weatherCode)
+    if(weatherCode === 0){
+        img_src = "/images/sun.png";
+    } else if(weatherCode >= 1 && weatherCode <= 3){
+        img_src = "/images/overcast.png";
+    } else if(weatherCode >= 51 && weatherCode <= 67 || weatherCode >=80 && weatherCode <=82){
+        img_src = "/images/rain.png";
+    } else if(weatherCode >= 71  && weatherCode <= 77){
+        img_src = "/images/snow.png";
+    }
+    return img_src
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
             const currentCity = urlParams.get('city');
@@ -7,16 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
             currentCityElement.innerHTML = currentCity.toUpperCase();
 
             let weather = 'Unknown'
-            const weatherCode = dailyData.weather_code[0];
-            if(weatherCode === 0){
-                weather = "/images/sun.png";
-            } else if(weatherCode >= 1 && weatherCode <= 3){
-                weather = "/images/overcast.png";
-            } else if(weatherCode >= 51 && weatherCode <= 67){
-                weather = "/images/rain.png";
-            } else if(weatherCode === 80){
-                weather = "/images/snow.png";
-            }
+
+            weatherCode = dailyData.weather_code[0];
+            weather = img_from_weather(weatherCode)
+
+            // A function that takes a day adnd returns the weather
+
+            // Make some sort of array that maps day of week to ime_src
+
+            // function
+            // let weather_map = []
+            // for i in range(7):
+            //   weather_map[i] = weather_today()
+            // return weather_map
 
             let weatherPlusOne = 'Unknown'
             const weatherCodePlusOne = dailyData.weather_code[1];
@@ -24,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusOne = "/images/sun.png";
             } else if(weatherCodePlusOne >= 1 && weatherCodePlusOne <= 3){
                 weatherPlusOne = "/images/overcast.png";
-            } else if(weatherCodePlusOne >= 51 && weatherCodePlusOne <= 67){
+            } else if(weatherCodePlusOne >= 51 && weatherCodePlusOne <= 67 ||weatherCodePlusOne >=80 && weatherCodePlusOne <=82){
                 weatherPlusOne = "/images/rain.png";
-            } else if(weatherCodePlusOne === 80){
+            } else if(weatherPlusOne >= 71  && weatherCodePlusOne <= 77){
                 weather = "/images/snow.png";
             }
 
@@ -36,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusTwo = "/images/sun.png";
             } else if(weatherCodePlusTwo >= 1 && weatherCodePlusTwo <= 3){
                 weatherPlusTwo = "/images/overcast.png";
-            } else if(weatherCodePlusTwo >= 51 && weatherCodePlusTwo <= 67){
+            } else if(weatherCodePlusTwo >= 51 && weatherCodePlusTwo <= 67 || weatherCodePlusTwo >=80 && weatherCodePlusTwo <=82){
                 weatherPlusTwo = "/images/rain.png";
-            } else if(weatherCodePlusTwo === 80){
+            } else if(weatherCodePlusTwo >= 71  && weatherCodePlusTwo <= 77){
                 weatherPlusTwo = "/images/snow.png";
             }
 
@@ -48,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusThree = "/images/sun.png";
             } else if(weatherCodePlusThree >= 1 && weatherCodePlusThree <= 3){
                 weatherPlusThree = "/images/overcast.png";
-            } else if(weatherCodePlusThree >= 51 && weatherCodePlusThree <= 67){
+            } else if(weatherCodePlusThree >= 51 && weatherCodePlusThree <= 67 || weatherCodePlusThree >=80 && weatherCodePlusThree <=82){
                 weatherPlusThree = "/images/rain.png";
-            } else if(weatherCodePlusThree === 80){
+            } else if(weatherCodePlusThree >= 71  && weatherCodePlusThree <= 77){
                 weatherPlusThree = "/images/snow.png";
             }
 
@@ -60,9 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusFour = "/images/sun.png";
             } else if(weatherCodePlusFour >= 1 && weatherCodePlusFour <= 3){
                 weatherPlusFour = "/images/overcast.png";
-            } else if(weatherCodePlusFour >= 51 && weatherCodePlusFour <= 67){
+            } else if(weatherCodePlusFour >= 51 && weatherCodePlusFour <= 67 ||  weatherCodePlusFour >=80  && weatherCodePlusFour <=82){
                 weatherPlusFour = "/images/rain.png";
-            } else if(weatherCodePlusFour === 80){
+            } else if(weatherCodePlusFour >= 71  && weatherCodePlusFour <= 77){
                 weatherPlusFour = "/images/snow.png";
             }
 
@@ -72,9 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusFive = "/images/sun.png";
             } else if(weatherCodePlusFive >= 1 && weatherCodePlusFive <= 3){
                 weatherPlusFive = "/images/overcast.png";
-            } else if(weatherCodePlusFive >= 51 && weatherCodePlusFive <= 67){
+            } else if(weatherCodePlusFive >= 51 && weatherCodePlusFive <= 67 || weatherCodePlusFive >=80 && weatherCodePlusFive <=82){
                 weatherPlusFive = "/images/rain.png";
-            } else if(weatherCodePlusFive === 80){
+            } else if(weatherCodePlusFive >= 71  && weatherCodePlusFive <= 77){
                 weatherPlusFive = "/images/snow.png";
             }
 
@@ -84,9 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 weatherPlusSix = "/images/sun.png";
             } else if(weatherCodePlusSix >= 1 && weatherCodePlusSix <= 3){
                 weatherPlusSix = "/images/overcast.png";
-            } else if(weatherCodePlusSix >= 51 && weatherCodePlusSix <= 67){
+            } else if(weatherCodePlusSix >= 51 && weatherCodePlusSix <= 67 || weatherCodePlusSix >=80 && weatherCodePlusSix <=82){
                 weatherPlusSix = "/images/rain.png";
-            } else if(weatherCodePlusSix === 80){
+            } else if(weatherCodePlusSix >= 71  && weatherCodePlusSix <= 77){
                 weatherPlusSix = "/images/snow.png";
             }
 
@@ -126,9 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const timeElement = document.getElementById("timeNow");
             timeElement.innerHTML = `${currentHour}:00`;
-
             const tempElement = document.getElementById("tempNow");
-            tempElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHour];
+            tempElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHour]  + "&deg;C";
+            const windElement = document.getElementById("windNow");
+            windElement.innerHTML = hourlyData.wind_speed_10m[indexOfCurrentHour]  + "KM/H";
 
             const todayMaxTempSummary = dailyData.temperature_2m_max[0];
             const maxTempElementSummary = document.getElementById("maxTempSummary");
@@ -188,9 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
             maxWindElementSummaryPlusSix.innerHTML = todayMaxWindSummaryPlusSix;
 
 
-            const windElement = document.getElementById("windNow");
-            windElement.innerHTML = hourlyData.wind_speed_10m[indexOfCurrentHour];
-
             const tempTomorrowElement = document.getElementById("tempTomorrow");
             tempTomorrowElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHourTomorrow];
 
@@ -202,18 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const dayElement = document.getElementById("day");
             dayElement.innerHTML = now.format("dddd");
             
-            
-
-            
-            const todayMaxTemp = dailyData.temperature_2m_max[0];
-            const maxTempElement = document.getElementById("maxTemp");
-            maxTempElement.innerHTML = todayMaxTemp;
-
-            const todayMaxWind = dailyData.wind_speed_10m_max[0];
-            const maxWindElement = document.getElementById("maxWind");
-            maxWindElement.innerHTML = todayMaxWind;
-
-
 
             const dayElementSummary = document.getElementById("daySummary");
             dayElementSummary.innerHTML = now.format("dddd");
@@ -235,4 +258,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const tomorrowPlusFiveElement = document.getElementById("tomorrowPlusFive");
             tomorrowPlusFiveElement.innerHTML = now.add(6, 'day').format("dddd");
+
+            const maxTempTodayText = document.getElementById("max temp");
+            maxTempTodayText.innerHTML = "Max Temp";
+            const todayMaxTemp = dailyData.temperature_2m_max[0] + "&deg;C";
+            const maxTempElement = document.getElementById("maxTemp");
+            maxTempElement.innerHTML = todayMaxTemp;
+            
+
+            const maxwindTodayText = document.getElementById("max wind");
+            maxwindTodayText.innerHTML = "Max Wind"
+            const todayMaxWind = dailyData.wind_speed_10m_max[0] + "KM/H";
+            const maxWindElement = document.getElementById("maxWind");
+            maxWindElement.innerHTML = todayMaxWind;
+            
+
+
+            //   const todayForecastCards = [
+            //     {
+            //       text: "Max Temp",
+            //       data: todayMaxTemp,
+            //     },
+            //     {
+            //         text: "Max Wind",
+            //         data: todayMaxWind,
+            //       },
+            //   ];
+            //   for (let index = 0; index < todayForecastCards.length; index++) {
+            //     const forecastCard = todayForecastCards[index] // [0]
+        
+            //     const cardText = document.querySelector(`#card-text-${index + 1}`);
+            //     cardText.innerHTML = todayForecastCards.text;
+            //     const cardData = document.querySelector(`#card-data-${index + 1}`);
+            //     cardData.innerHTML = todayForecastCards.data;
+            //   };
+
    });

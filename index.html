@@ -4,280 +4,46 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>(Whether) Weather</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-   <script src="data/weather_data.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const currentCity = "berlin";
-            const currentCityData = weatherData[currentCity + "_daily"]
-            const time = document.getElementById("time");
-            const weatherCode = document.getElementById("weatherCode");
-            const temperature_2m_max = document.getElementById("temperature_2m_max");
-            const wind_speed_10m_max = document.getElementById("wind_speed_10m_max");
-            const dailyData = weatherData[currentCity + "_daily"]
-            const hourlyData = weatherData[currentCity + "_hourly"]
-
-
-            time.innerHTML = currentCityData.daily.time[0];
-            weatherCode.innerHTML = currentCityData.daily.weather_code[0];
-            temperature_2m_max.innerHTML = currentCityData.daily.temperature_2m_max[0]
-            wind_speed_10m_max.innerHTML = currentCityData.daily.wind_speed_10m_max[0]
-
-            const image = document.getElementById('weatherCodeImg');
-            image.src = '/images/rain.png';
-
-            const now = dayjs(); // create a new date object that represents this time
-            const currentHour = now.hour(); // 0 - 23 as a number
-
-            // we need the index of the current hour in the time array
-            // we then use that index to query the termperature_2m data
-            const indexOfCurrentHour = hourlyData.time.indexOf(`TodayT${currentHour}:00`);
-            const indexOfCurrentHourTomorrow = hourlyData.time.indexOf(`Today+1T${currentHour}:00`);
-            console.log(`The index of the current hour is : ${indexOfCurrentHour}`);
-            console.log(`The index of the current hour tomorrow is : ${indexOfCurrentHourTomorrow}`);
-
-            const timeElement = document.getElementById("time");
-            const tempElement = document.getElementById("temp");
-
-            const tempTomorrowElement = document.getElementById("tempTomorrow");
-            const dayAfterTomorrowElement = document.getElementById("dayAfterTomorrow");
-
-            const dayElement = document.getElementById("day");
-            const tomorrowElement = document.getElementById("tomorrow");
-
-            timeElement.innerHTML = `${currentHour}:00`;
-            dayElement.innerHTML = now.format("dddd");
-            tomorrowElement.innerHTML = now.add(1, 'day').format("dddd");
-            dayAfterTomorrowElement.innerHTML = now.add(2, 'day').format("dddd");
-
-            tempElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHour];
-            tempTomorrowElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHourTomorrow];
-
-            const todayMaxTemp = dailyData.temperature_2m_max[0];
-            const maxTempElement = document.getElementById("maxTemp");
-            maxTempElement.innerHTML = todayMaxTemp;
-        });
-    </script>
-    <a href="/city-focus">Proin</a>
+  <script src="data/weather_data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/bulma.js"></script>
 </head>
 <body>
-    <p>The weather code is <span id="weatherCode"></span> </p>
-    <a href="/amsterdam.html">
-	<header class="columns">
-    <div class="column is-3">
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="images/favicon.png" alt="Logo" />
+      </a>
+      <span class="navbar-burger" data-target="navbarMenu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </span>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item">
+          Home
+        </a>
+        <a class="navbar-item">
+          Dashboard
+        </a>
+        <a class="navbar-item">
+          Settings
+        </a>
+      </div>
+    </div>
+  </nav>
+  <header class="columns">
+    <div class="column is-3" id="logo box">
       <section>
         <figure class="image is-2by1">
-         <img src="/images/logo.png" alt="Logo" />
+          <img src="/images/logo.png" alt="Logo" />
         </figure>
       </section>
-    </div>
-   <div class="column is-4">
-     <section>
-      <div class="box has-text-right is-shadowless mt-6">
-        <p class="title is-1 is-family-code"> Berlin</p>
-        <p class="subtitle is-3 is-family-code"><span id="time"></span></p>
-      </div>
-    </section>
-    </div>
-  <div class="column is-5">
-    <section>
-      <div class="box has-background-black is-shadowless mt-6 mr-6">
-    <p class="bd-notification has-text-centered title is-2 is-family-code has-text-white">Right now</p>
-    <div class="columns is-mobile">
-      <div class="column">
-        <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white">11&deg;</p>
-      </div>
-      <div class="column">
-        <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white">10km/h;</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </div>       
   </header>
-<main class="columns">
-  <div class="column is-3 mt-6">
-
-  	<section>
-      <figure class="image is-3by2">
-       <img src="/images/sun.png" id="weatherCodeImg" alt="Sun" />
-     </figure>
-   </section>
- </div>
- <div class="column is-3 ml-6 mt-6">
-   <section class="card">
-    <header class="card-header has-background-black">
-     <p class="card-header-title is-size-4 is-centered has-text-white">
-       Max temp
-     </p>
-   </header>
-   <article class="card-content has-background-black">
-    <p class="card-header-title is-size-4 is-centered has-text-white">
-     <span id="temperature_2m_max"></span> &deg;C
-   </p>
- </article>
-</section>
-</div>
-<div class="column is-3 mt-6">
-  <section class="card">
-    <header class="card-header has-background-black">
-      <p class="card-header-title is-size-4 is-centered has-text-white">
-        Max Wind
-      </p>
-    </header>
-    <article class="card-content has-background-black">
-      <p class="card-header-title is-size-4 is-centered has-text-white">
-        <span id="wind_speed_10m_max"></span> Km/H
-      </p>
-    </article>
-  </section>
-</div>
-</main>
-<footer class=columns>
-  <div class="column">
-   <section>
-    <p></p>
-  </section>
-</div>
- <div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Today
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            <span id="temperature_2m_max"></span> &deg;C
-            <span id="wind_speed_10m_max"></span> Km/H
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Monday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Tuesday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Wednesday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Thursday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Friday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
-  <section class="card">
-        <header class="card-header has-background-black">
-          <p class="card-header-title has-text-white has-background-black has-text-centered">
-            Saturday
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-2by1 has-background-black">
-         <img src="/images/sun.png" alt="sun" />
-        </figure>
-        </div>
-        <article class="card-content has-background-black">
-          <p class="title has-text-white has-text-centered">
-            6&deg;C 12&deg;C
-          </p>
-        </article>
-      </section>
-    </div>
-<div class="column">
- <section>
-</section>
-</div>
-</footer>
-</body>
-</html>
