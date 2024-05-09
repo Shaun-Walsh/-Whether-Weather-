@@ -1,296 +1,226 @@
-dailyData = weatherData["amsterdam_daily"].daily
-
-// function img_from_weather(data, weatherCode, day_of_week) {
-//     let img_src = 'Unknown'
-//     weatherCode = data.weather_code[day_of_week];
-//     console.log(weatherCode)
-//     if(weatherCode === 0){
-//         img_src = "/images/sun.png";
-//     } else if(weatherCode >= 1 && weatherCode <= 3){
-//         img_src = "/images/overcast.png";
-//     } else if(weatherCode >= 51 && weatherCode <= 67){
-//         img_src = "/images/rain.png";
-//     } else if(weatherCode === 80){
-//         img_src = "/images/snow.png";
-//     }
-//     return img_src
-// }
-
-function img_from_weather(weatherCode) {
-    let img_src = 'Unknown'
-    console.log(weatherCode)
-    if(weatherCode === 0){
-        img_src = "/images/sun.png";
-    } else if(weatherCode >= 1 && weatherCode <= 3){
-        img_src = "/images/overcast.png";
-    } else if(weatherCode >= 51 && weatherCode <= 67 || weatherCode >=80 && weatherCode <=82){
-        img_src = "/images/rain.png";
-    } else if(weatherCode >= 71  && weatherCode <= 77){
-        img_src = "/images/snow.png";
-    }
-    return img_src
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentCity = urlParams.get('city');
-            const dailyData = weatherData[currentCity + "_daily"].daily
-            const hourlyData = weatherData[currentCity + "_hourly"].hourly
-            const currentCityElement = document.getElementById("currentCity");
-            currentCityElement.innerHTML = currentCity.toUpperCase();
+            const currentCityIndex = "amsterdam";
+            const dailyDataIndex = weatherData[currentCityIndex + "_daily"].daily
+            const amsterdamDailyMaxTemp = dailyDataIndex.temperature_2m_max[0] + "&deg;C";
+            const amsterdamDailyMaxWind = dailyDataIndex.wind_speed_10m_max[0] + "KM/H";
+            let weatherAmsterdam = 'Unknown'
+            const weatherCodeAmsterdam = dailyDataIndex.weather_code[0];
+            if(weatherCodeAmsterdam === 0){
+                weatherAmsterdam = "/images/sun.png";
+            } else if(weatherCodeAmsterdam >= 1 && weatherCodeAmsterdam <= 3){
+                weatherAmsterdam = "/images/overcast.png";
+            } else if(weatherCodeAmsterdam >= 51 && weatherCodeAmsterdam <= 67 ||weatherCodeAmsterdam >=80 && weatherCodeAmsterdam <=82){
+                weatherAmsterdam = "/images/rain.png";
+            } else if(weatherCodeAmsterdam >= 71  && weatherCodeAmsterdam <= 77){
+                weatherAmsterdam = "/images/snow.png";Cork   }
+            const weatherTodayElementAmsterdam = weatherAmsterdam;
 
-            let weather = 'Unknown'
-
-            weatherCode = dailyData.weather_code[0];
-            weather = img_from_weather(weatherCode)
-
-            // A function that takes a day adnd returns the weather
-
-            // Make some sort of array that maps day of week to ime_src
-
-            // function
-            // let weather_map = []
-            // for i in range(7):
-            //   weather_map[i] = weather_today()
-            // return weather_map
-
-            let weatherPlusOne = 'Unknown'
-            const weatherCodePlusOne = dailyData.weather_code[1];
-            if(weatherCodePlusOne === 0){
-                weatherPlusOne = "/images/sun.png";
-            } else if(weatherCodePlusOne >= 1 && weatherCodePlusOne <= 3){
-                weatherPlusOne = "/images/overcast.png";
-            } else if(weatherCodePlusOne >= 51 && weatherCodePlusOne <= 67 ||weatherCodePlusOne >=80 && weatherCodePlusOne <=82){
-                weatherPlusOne = "/images/rain.png";
-            } else if(weatherPlusOne >= 71  && weatherCodePlusOne <= 77){
-                weather = "/images/snow.png";
+            const currentCityIndexBerlin = "berlin";
+            const dailyDataIndexBerlin = weatherData[currentCityIndexBerlin + "_daily"].daily
+            const berlinDailyMaxTemp = dailyDataIndexBerlin.temperature_2m_max[0] + "&deg;C";
+            const berlinDailyMaxWind = dailyDataIndexBerlin.wind_speed_10m_max[0] + "KM/H";
+            let weatherBerlin = 'Unknown'
+            const weatherCodeBerlin = dailyDataIndexBerlin.weather_code[0];
+            if(weatherCodeBerlin === 0){
+                weatherBerlin = "/images/sun.png";
+            } else if(weatherCodeBerlin >= 1 && weatherCodeBerlin <= 3){
+                weatherBerlin = "/images/overcast.png";
+            } else if(weatherCodeBerlin >= 51 && weatherCodeBerlin <= 67 ||weatherCodeBerlin >=80 && weatherCodeBerlin <=82){
+                weatherBerlin = "/images/rain.png";
+            } else if(weatherCodeBerlin >= 71  && weatherCodeBerlin <= 77){
+                weatherBerlin = "/images/snow.png";
             }
+            const weatherTodayElementBerlin = weatherBerlin;
 
-            let weatherPlusTwo = 'Unknown'
-            const weatherCodePlusTwo = dailyData.weather_code[2];
-            if(weatherCodePlusTwo === 0){
-                weatherPlusTwo = "/images/sun.png";
-            } else if(weatherCodePlusTwo >= 1 && weatherCodePlusTwo <= 3){
-                weatherPlusTwo = "/images/overcast.png";
-            } else if(weatherCodePlusTwo >= 51 && weatherCodePlusTwo <= 67 || weatherCodePlusTwo >=80 && weatherCodePlusTwo <=82){
-                weatherPlusTwo = "/images/rain.png";
-            } else if(weatherCodePlusTwo >= 71  && weatherCodePlusTwo <= 77){
-                weatherPlusTwo = "/images/snow.png";
+            const currentCityIndexCopenhagen = "copenhagen";
+            const dailyDataIndexCopenhagen = weatherData[currentCityIndexCopenhagen + "_daily"].daily
+            const copenhagenDailyMaxTemp = dailyDataIndexCopenhagen.temperature_2m_max[0] + "&deg;C";
+            const copenhagenDailyMaxWind = dailyDataIndexCopenhagen.wind_speed_10m_max[0] + "KM/H";
+            let weatherCopenhagen = 'Unknown'
+            const weatherCodeCopenhagen = dailyDataIndexCopenhagen.weather_code[0];
+            if(weatherCodeCopenhagen === 0){
+                weatherCopenhagen = "/images/sun.png";
+            } else if(weatherCodeCopenhagen >= 1 && weatherCodeCopenhagen <= 3){
+                weatherCopenhagen = "/images/overcast.png";
+            } else if(weatherCodeCopenhagen >= 51 && weatherCodeCopenhagen <= 67 ||weatherCodeCopenhagen >=80 && weatherCodeCopenhagen <=82){
+                weatherCopenhagen = "/images/rain.png";
+            } else if(weatherCodeCopenhagen >= 71  && weatherCodeCopenhagen <= 77){
+                weatherCopenhagen = "/images/snow.png";
             }
+            const weatherTodayElementCopenhagen = weatherCopenhagen;
 
-            let weatherPlusThree = 'Unknown'
-            const weatherCodePlusThree = dailyData.weather_code[3];
-            if(weatherCodePlusThree === 0){
-                weatherPlusThree = "/images/sun.png";
-            } else if(weatherCodePlusThree >= 1 && weatherCodePlusThree <= 3){
-                weatherPlusThree = "/images/overcast.png";
-            } else if(weatherCodePlusThree >= 51 && weatherCodePlusThree <= 67 || weatherCodePlusThree >=80 && weatherCodePlusThree <=82){
-                weatherPlusThree = "/images/rain.png";
-            } else if(weatherCodePlusThree >= 71  && weatherCodePlusThree <= 77){
-                weatherPlusThree = "/images/snow.png";
+            const currentCityIndexCork = "cork";
+            const dailyDataIndexCork = weatherData[currentCityIndexCork + "_daily"].daily
+            const corkDailyMaxTemp = dailyDataIndexCork.temperature_2m_max[0] + "&deg;C";
+            const corkDailyMaxWind = dailyDataIndexCork.wind_speed_10m_max[0] + "KM/H";
+            let weatherCork = 'Unknown'
+            const weatherCodeCork = dailyDataIndexCork.weather_code[0];
+            if(weatherCodeCork === 0){
+                weatherCork = "/images/sun.png";
+            } else if(weatherCodeCork >= 1 && weatherCodeCork <= 3){
+                weatherCork = "/images/overcast.png";
+            } else if(weatherCodeCork >= 51 && weatherCodeCork <= 67 ||weatherCodeCork >=80 && weatherCodeCork <=82){
+                weatherCork = "/images/rain.png";
+            } else if(weatherCodeCork >= 71  && weatherCodeCork <= 77){
+                weatherCork = "/images/snow.png";
             }
+            const weatherTodayElementCork = weatherCork;
 
-            let weatherPlusFour = 'Unknown'
-            const weatherCodePlusFour = dailyData.weather_code[4];
-            if(weatherCodePlusFour === 0){
-                weatherPlusFour = "/images/sun.png";
-            } else if(weatherCodePlusFour >= 1 && weatherCodePlusFour <= 3){
-                weatherPlusFour = "/images/overcast.png";
-            } else if(weatherCodePlusFour >= 51 && weatherCodePlusFour <= 67 ||  weatherCodePlusFour >=80  && weatherCodePlusFour <=82){
-                weatherPlusFour = "/images/rain.png";
-            } else if(weatherCodePlusFour >= 71  && weatherCodePlusFour <= 77){
-                weatherPlusFour = "/images/snow.png";
+            const currentCityIndexNewYork = "new_york";
+            const dailyDataIndexNewYork = weatherData[currentCityIndexNewYork + "_daily"].daily
+            const newYorkDailyMaxTemp = dailyDataIndexNewYork.temperature_2m_max[0] + "&deg;C";
+            const newYorkDailyMaxWind = dailyDataIndexNewYork.wind_speed_10m_max[0] + "KM/H";
+            let weatherNewYork = 'Unknown'
+            const weatherCodeNewYork = dailyDataIndexNewYork.weather_code[0];
+            if(weatherCodeNewYork === 0){
+                weatherNewYork = "/images/sun.png";
+            } else if(weatherCodeNewYork >= 1 && weatherCodeNewYork <= 3){
+                weatherNewYork = "/images/overcast.png";
+            } else if(weatherCodeNewYork >= 51 && weatherCodeNewYork <= 67 ||weatherCodeNewYork >=80 && weatherCodeNewYork <=82){
+                weatherNewYork = "/images/rain.png";
+            } else if(weatherCodeNewYork >= 71  && weatherCodeNewYork <= 77){
+                weatherNewYork = "/images/snow.png";
             }
+            const weatherTodayElementNewYork = weatherNewYork;
 
-            let weatherPlusFive = 'Unknown'
-            const weatherCodePlusFive = dailyData.weather_code[5];
-            if(weatherCodePlusFive === 0){
-                weatherPlusFive = "/images/sun.png";
-            } else if(weatherCodePlusFive >= 1 && weatherCodePlusFive <= 3){
-                weatherPlusFive = "/images/overcast.png";
-            } else if(weatherCodePlusFive >= 51 && weatherCodePlusFive <= 67 || weatherCodePlusFive >=80 && weatherCodePlusFive <=82){
-                weatherPlusFive = "/images/rain.png";
-            } else if(weatherCodePlusFive >= 71  && weatherCodePlusFive <= 77){
-                weatherPlusFive = "/images/snow.png";
+            const currentCityIndexParis = "paris";
+            const dailyDataIndexParis = weatherData[currentCityIndexParis + "_daily"].daily
+            const parisDailyMaxTemp = dailyDataIndexParis.temperature_2m_max[0] + "&deg;C";
+            const parisDailyMaxWind = dailyDataIndexParis.wind_speed_10m_max[0] + "KM/H";
+            let weatherParis = 'Unknown'
+            const weatherCodeParis = dailyDataIndexParis.weather_code[0];
+            if(weatherCodeParis === 0){
+                weatherParis ="/images/sun.png";
+            } else if(weatherCodeParis >= 1 && weatherCodeParis <= 3){
+                weatherParis = "/images/overcast.png";
+            } else if(weatherCodeParis >= 51 && weatherCodeParis <= 67 ||weatherCodeParis >=80 && weatherCodeParis <=82){
+                weatherParis = "/images/rain.png";
+            } else if(weatheCodeParis >= 71  && weatherCodeParis <= 77){
+                weatherParis = "/images/snow.png";
             }
+            const weatherTodayElementParis = weatherParis;
 
-            let weatherPlusSix = 'Unknown'
-            const weatherCodePlusSix = dailyData.weather_code[6];
-            if(weatherCodePlusSix === 0){
-                weatherPlusSix = "/images/sun.png";
-            } else if(weatherCodePlusSix >= 1 && weatherCodePlusSix <= 3){
-                weatherPlusSix = "/images/overcast.png";
-            } else if(weatherCodePlusSix >= 51 && weatherCodePlusSix <= 67 || weatherCodePlusSix >=80 && weatherCodePlusSix <=82){
-                weatherPlusSix = "/images/rain.png";
-            } else if(weatherCodePlusSix >= 71  && weatherCodePlusSix <= 77){
-                weatherPlusSix = "/images/snow.png";
+            const currentCityIndexSanFrancisco = "san_francisco";
+            const dailyDataIndexSanFrancisco = weatherData[currentCityIndexSanFrancisco + "_daily"].daily
+            const sanFranciscoDailyMaxTemp = dailyDataIndexSanFrancisco.temperature_2m_max[0] + "&deg;C";
+            const sanFranciscoDailyMaxWind = dailyDataIndexSanFrancisco.wind_speed_10m_max[0] + "KM/H";
+            let weatherSanFrancisco = 'Unknown'
+            const weatherCodeSanFrancisco = dailyDataIndexSanFrancisco.weather_code[0];
+            if(weatherCodeSanFrancisco === 0){
+                weatherSanFrancisco ="/images/sun.png";
+            } else if(weatherCodeSanFrancisco >= 1 && weatherCodeSanFrancisco <= 3){
+                weatherSanFrancisco = "/images/overcast.png";
+            } else if(weatherCodeSanFrancisco >= 51 && weatherCodeSanFrancisco <= 67 ||weatherCodeSanFrancisco >=80 && weatherCodeSanFrancisco <=82){
+                weatherSanFrancisco = "/images/rain.png";
+            } else if(weatheCodeSanFrancisco >= 71  && weatherCodeSanFrancisco <= 77){
+                weatherSanFrancisco = "/images/snow.png";
             }
+            const weatherTodayElementSanFrancisco = weatherSanFrancisco;
 
-            const weatherCodeTodayElement = document.getElementById("weatherCodeToday");
-            weatherCodeTodayElement.innerHTML = weatherCode;
-            const weatherTodayElement = document.getElementById("weatherToday");
-            weatherTodayElement.src = weather;
-            const weatherTodaySummary = document.getElementById("weatherTodaySummary");
-            weatherTodaySummary.src = weather;
-            const weatherCodeTomorrowElement = document.getElementById("weatherCodeTomorrow");
-            weatherCodeTomorrowElement.innerHTML = dailyData.weather_code[1];
-            const weatherPlusOneElement = document.getElementById("weatherPlusOne");
-            weatherPlusOneElement.src = weatherPlusOne;
-            const weatherPlusTwoElement = document.getElementById("weatherPlusTwo");
-            weatherPlusTwoElement.src = weatherPlusTwo;
-            const weatherPlusThreeElement = document.getElementById("weatherPlusThree");
-            weatherPlusThreeElement.src = weatherPlusThree;
-            const weatherPlusFourElement = document.getElementById("weatherPlusFour");
-            weatherPlusFourElement.src = weatherPlusFour;
-            const weatherPlusFiveElement = document.getElementById("weatherPlusFive");
-            weatherPlusFiveElement.src = weatherPlusFive;
-            const weatherPlusSixElement = document.getElementById("weatherPlusSix");
-            weatherPlusSixElement.src = weatherPlusSix;
-           
-            
-            
-            
-            
-            
-            
+            const currentCityIndexTromso = "tromso";
+            const dailyDataIndexTromso = weatherData[currentCityIndexTromso + "_daily"].daily
+            const tromsoDailyMaxTemp = dailyDataIndexTromso.temperature_2m_max[0] + "&deg;C";
+            const tromsoDailyMaxWind = dailyDataIndexTromso.wind_speed_10m_max[0] + "KM/H";
+            let weatherTromso = 'Unknown'
+            const weatherCodeTromso = dailyDataIndexTromso.weather_code[0];
+            if(weatherCodeTromso === 0){
+                weatherTromso ="/images/sun.png";
+            } else if(weatherCodeTromso >= 1 && weatherCodeTromso <= 3){
+                weatherTromso = "/images/overcast.png";
+            } else if(weatherCodeTromso >= 51 && weatherCodeTromso <= 67 ||weatherCodeTromso >=80 && weatherCodeTromso <=82){
+                weatherTromso = "/images/rain.png";
+            } else if(weatherCodeTromso >= 71  && weatherCodeTromso <= 77){
+                weatherTromso = "/images/snow.png";
+            }
+            const weatherTodayElementTromso = weatherTromso;
 
-            const now = dayjs(); 
-            const currentHour = now.hour();
+            const currentCityIndexWaterford = "waterford";
+            const dailyDataIndexWaterford = weatherData[currentCityIndexWaterford + "_daily"].daily
+            const waterfordDailyMaxTemp = dailyDataIndexWaterford.temperature_2m_max[0] + "&deg;C";
+            const waterfordDailyMaxWind = dailyDataIndexWaterford.wind_speed_10m_max[0] + "KM/H";
+            let weatherWaterford = 'Unknown'
+            const weatherCodeWaterford = dailyDataIndexWaterford.weather_code[0];
+            if(weatherCodeWaterford === 0){
+                weatherWaterford ="/images/sun.png";
+            } else if(weatherCodeWaterford >= 1 && weatherCodeWaterford <= 3){
+                weatherWaterford = "/images/overcast.png";
+            } else if(weatherCodeWaterford >= 51 && weatherCodeWaterford <= 67 ||weatherCodeWaterford >=80 && weatherCodeWaterford <=82){
+                weatherWaterford = "/images/rain.png";
+            } else if(weatherCodeWaterford >= 71  && weatherCodeWaterford <= 77){
+                weatherWaterford = "/images/snow.png";
+            }
+            const weatherTodayElementWaterford = weatherWaterford;
 
-            const indexOfCurrentHour = hourlyData.time.indexOf(`TodayT${currentHour}:00`);
-            const indexOfCurrentHourTomorrow = hourlyData.time.indexOf(`Today+1T${currentHour}:00`);
+const dashboardForecastCards = [
+    {
+      day: "Today",
+      city:  "Amsterdam",
+      image: weatherTodayElementAmsterdam,
+      temp: amsterdamDailyMaxTemp,
+      wind: amsterdamDailyMaxWind,
+    },
+    {day: "Today",
+    city: "Berlin",
+    image: weatherTodayElementBerlin,
+     temp: berlinDailyMaxTemp,
+      wind: berlinDailyMaxWind,
+    },
+    {day: "Today",
+    city:  "Copenhagen",
+    image: weatherTodayElementCopenhagen,
+    temp: copenhagenDailyMaxTemp,
+    wind: copenhagenDailyMaxWind,
+    },
+    {day: "Today",
+    city: "Cork",
+    image: weatherTodayElementCork,
+    temp: corkDailyMaxTemp,
+    wind: corkDailyMaxWind,
+    },
+    { day: "Today",
+    city: "New York",
+    image: weatherTodayElementNewYork,
+    temp: newYorkDailyMaxTemp,
+    wind: newYorkDailyMaxWind,
+    },
+    { day: "Today",
+    city: "Paris",
+    image: weatherTodayElementParis, 
+    temp: parisDailyMaxTemp,
+    wind: parisDailyMaxWind,
+    },
+    { day: "Today",
+    city: "San Francisco",
+    image: weatherTodayElementSanFrancisco, 
+    temp: sanFranciscoDailyMaxTemp,
+    wind: sanFranciscoDailyMaxWind,
+    },
+    { day: "Today",
+    city: "Tromso",
+    image: weatherTodayElementTromso, 
+    temp: tromsoDailyMaxTemp,
+    wind: tromsoDailyMaxWind,
+    },
+    { day: "Today",
+    city: "Waterford",
+    image: weatherTodayElementWaterford, 
+    temp: waterfordDailyMaxTemp,
+    wind: waterfordDailyMaxWind,
+    },
 
-            const timeElement = document.getElementById("timeNow");
-            timeElement.innerHTML = `${currentHour}:00`;
-            const tempElement = document.getElementById("tempNow");
-            tempElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHour]  + "&deg;C";
-            const windElement = document.getElementById("windNow");
-            windElement.innerHTML = hourlyData.wind_speed_10m[indexOfCurrentHour]  + "KM/H";
-
-            const todayMaxTempSummary = dailyData.temperature_2m_max[0];
-            const maxTempElementSummary = document.getElementById("maxTempSummary");
-            maxTempElementSummary.innerHTML = todayMaxTempSummary;
-
-            const todayMaxTempSummaryPlusOne = dailyData.temperature_2m_max[1];
-            const maxTempElementSummaryPlusOne = document.getElementById("maxTempSummaryPlusOne");
-            maxTempElementSummaryPlusOne.innerHTML = todayMaxTempSummaryPlusOne;
-
-            const todayMaxTempSummaryPlusTwo = dailyData.temperature_2m_max[2];
-            const maxTempElementSummaryPlusTwo = document.getElementById("maxTempSummaryPlusTwo");
-            maxTempElementSummaryPlusTwo.innerHTML = todayMaxTempSummaryPlusTwo;
-
-            const todayMaxTempSummaryPlusThree = dailyData.temperature_2m_max[3];
-            const maxTempElementSummaryPlusThree = document.getElementById("maxTempSummaryPlusThree");
-            maxTempElementSummaryPlusThree.innerHTML = todayMaxTempSummaryPlusThree;
-
-            const todayMaxTempSummaryPlusFour = dailyData.temperature_2m_max[4];
-            const maxTempElementSummaryPlusFour = document.getElementById("maxTempSummaryPlusFour");
-            maxTempElementSummaryPlusFour.innerHTML = todayMaxTempSummaryPlusFour;
-
-            const todayMaxTempSummaryPlusFive = dailyData.temperature_2m_max[5];
-            const maxTempElementSummaryPlusFive = document.getElementById("maxTempSummaryPlusFive");
-            maxTempElementSummaryPlusFive.innerHTML = todayMaxTempSummaryPlusFive;
-
-            const todayMaxTempSummaryPlusSix = dailyData.temperature_2m_max[6];
-            const maxTempElementSummaryPlusSix = document.getElementById("maxTempSummaryPlusSix");
-            maxTempElementSummaryPlusSix.innerHTML = todayMaxTempSummaryPlusSix;
-
-
-            const todayMaxWindSummary = dailyData.wind_speed_10m_max[0];
-            const maxWindElementSummary = document.getElementById("maxWindSummary");
-            maxWindElementSummary.innerHTML = todayMaxWindSummary;
-
-            const todayMaxWindSummaryPlusOne = dailyData.wind_speed_10m_max[1];
-            const maxWindElementSummaryPlusOne = document.getElementById("maxWindSummaryPlusOne");
-            maxWindElementSummaryPlusOne.innerHTML = todayMaxWindSummaryPlusOne;
-
-            const todayMaxWindSummaryPlusTwo = dailyData.wind_speed_10m_max[2];
-            const maxWindElementSummaryPlusTwo = document.getElementById("maxWindSummaryPlusTwo");
-            maxWindElementSummaryPlusTwo.innerHTML = todayMaxWindSummaryPlusTwo;
-
-            const todayMaxWindSummaryPlusThree = dailyData.wind_speed_10m_max[3];
-            const maxWindElementSummaryPlusThree = document.getElementById("maxWindSummaryPlusThree");
-            maxWindElementSummaryPlusThree.innerHTML = todayMaxWindSummaryPlusThree;
-
-            const todayMaxWindSummaryPlusFour = dailyData.wind_speed_10m_max[4];
-            const maxWindElementSummaryPlusFour = document.getElementById("maxWindSummaryPlusFour");
-            maxWindElementSummaryPlusFour.innerHTML = todayMaxWindSummaryPlusFour;
-
-            const todayMaxWindSummaryPlusFive = dailyData.wind_speed_10m_max[5];
-            const maxWindElementSummaryPlusFive = document.getElementById("maxWindSummaryPlusFive");
-            maxWindElementSummaryPlusFive.innerHTML = todayMaxWindSummaryPlusFive;
-
-            const todayMaxWindSummaryPlusSix = dailyData.wind_speed_10m_max[6];
-            const maxWindElementSummaryPlusSix = document.getElementById("maxWindSummaryPlusSix");
-            maxWindElementSummaryPlusSix.innerHTML = todayMaxWindSummaryPlusSix;
+  ];
 
 
-            const tempTomorrowElement = document.getElementById("tempTomorrow");
-            tempTomorrowElement.innerHTML = hourlyData.temperature_2m[indexOfCurrentHourTomorrow];
+        const main = document.querySelector('main');
+        dashboardForecastCards.forEach((dashboardForecastCard) => main.innerHTML += createDashbordForecastCardItem(dashboardForecastCard));
+
+    
+        const dataStoreDiv = document.querySelector('dataStore');
+        dataStore.list().forEach((titleForecastCard) => { 
+        dataStoreDiv.innerHTML = dataStoreDiv.innerHTML + createTitleForecastCardItem(titleForecastCard);
+        });
+    
 
 
-
-            const dayAfterTomorrowElement = document.getElementById("dayAfterTomorrow");
-            dayAfterTomorrowElement.innerHTML = now.add(2, 'day').format("dddd");
-
-            const dayElement = document.getElementById("day");
-            dayElement.innerHTML = now.format("dddd");
-            
-
-            const dayElementSummary = document.getElementById("daySummary");
-            dayElementSummary.innerHTML = now.format("dddd");
-
-            const tomorrowElement = document.getElementById("tomorrow");
-            tomorrowElement.innerHTML = now.add(1, 'day').format("dddd");
-
-            const tomorrowPlusOneElement = document.getElementById("tomorrowPlusOne");
-            tomorrowPlusOneElement.innerHTML = now.add(2, 'day').format("dddd");
-
-            const tomorrowPlusTwoElement = document.getElementById("tomorrowPlusTwo");
-            tomorrowPlusTwoElement.innerHTML = now.add(3, 'day').format("dddd");
-
-            const tomorrowPlusThreeElement = document.getElementById("tomorrowPlusThree");
-            tomorrowPlusThreeElement.innerHTML = now.add(4, 'day').format("dddd");
-
-            const tomorrowPlusFourElement = document.getElementById("tomorrowPlusFour");
-            tomorrowPlusFourElement.innerHTML = now.add(5, 'day').format("dddd");
-
-            const tomorrowPlusFiveElement = document.getElementById("tomorrowPlusFive");
-            tomorrowPlusFiveElement.innerHTML = now.add(6, 'day').format("dddd");
-
-            const maxTempTodayText = document.getElementById("max temp");
-            maxTempTodayText.innerHTML = "Max Temp";
-            const todayMaxTemp = dailyData.temperature_2m_max[0] + "&deg;C";
-            const maxTempElement = document.getElementById("maxTemp");
-            maxTempElement.innerHTML = todayMaxTemp;
-            
-
-            const maxwindTodayText = document.getElementById("max wind");
-            maxwindTodayText.innerHTML = "Max Wind"
-            const todayMaxWind = dailyData.wind_speed_10m_max[0] + "KM/H";
-            const maxWindElement = document.getElementById("maxWind");
-            maxWindElement.innerHTML = todayMaxWind;
-            
-
-
-            //   const todayForecastCards = [
-            //     {
-            //       text: "Max Temp",
-            //       data: todayMaxTemp,
-            //     },
-            //     {
-            //         text: "Max Wind",
-            //         data: todayMaxWind,
-            //       },
-            //   ];
-            //   for (let index = 0; index < todayForecastCards.length; index++) {
-            //     const forecastCard = todayForecastCards[index] // [0]
-        
-            //     const cardText = document.querySelector(`#card-text-${index + 1}`);
-            //     cardText.innerHTML = todayForecastCards.text;
-            //     const cardData = document.querySelector(`#card-data-${index + 1}`);
-            //     cardData.innerHTML = todayForecastCards.data;
-            //   };
-
-   });
+    });
