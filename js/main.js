@@ -1,34 +1,3 @@
-//dailyData = weatherData["amsterdam_daily"].daily
-
-// function img_from_weather(weatherCode) {
-//     let img_src = 'Unknown'
-//     console.log(weatherCode)
-//     if(weatherCode === 0){
-//         img_src = "/images/sun.png";
-//     } else if(weatherCode >= 1 && weatherCode <= 3){
-//         img_src = "/images/overcast.png";
-//     } else if(weatherCode >= 51 && weatherCode <= 67 || weatherCode >=80 && weatherCode <=82){
-//         img_src = "/images/rain.png";
-//     } else if(weatherCode >= 71  && weatherCode <= 77){
-//         img_src = "/images/snow.png";
-//     }
-//     return img_src
-// }
-//  let weather = 'Unknown'
-
-// weatherCode = dailyData.weather_code[0];
-// weather = img_from_weather(weatherCode)
-
-// A function that takes a day adnd returns the weather
-
-// Make some sort of array that maps day of week to ime_src
-
-// function
-// let weather_map = []
-// for i in range(7):
-//   weather_map[i] = weather_today()
-// return weather_map
-
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const currentCity = urlParams.get("city");
@@ -37,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentCityElement = document.getElementById("currentCity");
   currentCityElement.innerHTML = currentCity.toUpperCase();
 
+  //Code for generating the weather image o city focus page, and providing images for summary cards
   let weather = "Unknown";
   const weatherCode = dailyData.weather_code[0];
-
   if (weatherCode === 0) {
     weather = "/images/sun.png";
   } else if (weatherCode >= 1 && weatherCode <= 3) {
@@ -145,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const weatherTodayImage = document.getElementById("weatherToday");
   weatherTodayImage.src = weather;
-
   const weatherTodayElement = weather;
   const weatherPlusOneElement = weatherPlusOne;
   const weatherPlusTwoElement = weatherPlusTwo;
@@ -154,23 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const weatherPlusFiveElement = weatherPlusFive;
   const weatherPlusSixElement = weatherPlusSix;
 
+  //dayjs code for getting the current time
   const now = dayjs();
-  const currentHour = now.hour();
-
+  const currentHour = now.format("HH");
   const indexOfCurrentHour = hourlyData.time.indexOf(`TodayT${currentHour}:00`);
-  const indexOfCurrentHourTomorrow = hourlyData.time.indexOf(
-    `Today+1T${currentHour}:00`
-  );
 
   const timeElement = document.getElementById("timeNow");
   timeElement.innerHTML = `${currentHour}:00`;
+
+  //code for generating current temperature and wind speed based on the time the browser is loaded
   const tempElement = document.getElementById("tempNow");
   tempElement.innerHTML =
     hourlyData.temperature_2m[indexOfCurrentHour] + "&deg;C";
+
   const windElement = document.getElementById("windNow");
   windElement.innerHTML =
     hourlyData.wind_speed_10m[indexOfCurrentHour] + "KM/H";
 
+  //code for maximum temperature in the summary cards
   const todayMaxTempSummary = dailyData.temperature_2m_max[0] + "&deg;C";
 
   const todayMaxTempSummaryPlusOne = dailyData.temperature_2m_max[1] + "&deg;C";
@@ -188,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const todayMaxTempSummaryPlusSix = dailyData.temperature_2m_max[6] + "&deg;C";
 
+  //code for the maximum wind speed in the summary cards
   const todayMaxWindSummary = dailyData.wind_speed_10m_max[0] + "KM/H";
 
   const todayMaxWindSummaryPlusOne = dailyData.wind_speed_10m_max[1] + "KM/H";
@@ -202,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const todayMaxWindSummaryPlusSix = dailyData.wind_speed_10m_max[6] + "KM/H";
 
+  //code for generating the day shown on the summary cards
   const dayElement = document.getElementById("day");
   dayElement.innerHTML = now.format("dddd");
 
@@ -223,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const todayMaxWind = dailyData.wind_speed_10m_max[0] + "KM/H";
 
+  //Declaring an array for the two large main forecastCards, running these through a for each and calling createForecastCardItem to dynamically generate html
   const forecastCards = [
     {
       text: "Max Temp",
@@ -241,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     (forecastCard) => (main.innerHTML += createForecastCardItem(forecastCard))
   );
 
+  //Declaring an array for the summaryForecastCards, running these through a for each loop and calling createSummaryForecastCardItem to dynamically generate html
   const summaryForecastCards = [
     {
       day: dayElementCard,

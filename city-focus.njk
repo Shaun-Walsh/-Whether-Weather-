@@ -1,74 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>(Whether) Weather</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-  <script src="/data/weather_data.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>    
-  <script src="/js/main.js"></script>
-  <script src="/js/bulma.js"></script>
-  <script src="/js/components/weather-cards.js"></script>
-  <script src="/js/data-store.js"></script>
-
-
-</head>
-<body>
-    <nav class="navbar has-background-info">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <figure class="navimage is-96x96">
-          <img src="/images/favicon.png" alt="Logo"/>
-          </figure>
-        </a>
-        <span class="navbar-burger" data-target="navbarMenu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </span>
-      </div>
-      <div id="navbarMenu" class="navbar-menu has-background-info">
-        <div class="navbar-end">
-          <a href="/index" class="navbar-item has-text-white">
-            Home
-          </a>
-          <a href="/index" class="navbar-item has-text-white">
-            Dashboard
-          </a>
-          <a class="navbar-item has-text-white">
-            Settings
-          </a>
-        </div>
-      </div>
-    </nav>
-   <header class="columns has-background-info">
-     <div class="column is-3" id="logo box">
-       <section>
-         <figure class="image is-2by1">
-           <img src="/images/logo.png" alt="Logo" />
-         </figure>
-       </section>
-     </div>
+---
+layout: layout.njk
+script: /js/main.js
+--- 
        <div class="column is-4 has-text-white" id="day and location">
          <section>
-           <div class="box has-text-right  mt-6 has-background-warning">
-            <p class="title is-1 is-family-code"> <span id="currentCity"></span></p>
-            <p class="subtitle is-3 is-family-code"><span id="day"></span></p>
+           <div class="box has-text-right  mt-6 has-background-info">
+            <p class="title is-1 is-family-code has-text-white"> <span id="currentCity"></span></p>
+            <p class="subtitle is-3 is-family-code has-text-white"><span id="day"></span></p>
            </div>
          </section>
        </div>
          <div class="column is-5" id="current time and forecast">
            <section>
-             <div class="box has-background-warning mt-6 mr-6">
-               <p class="bd-notification has-text-centered title is-2 is-family-code has-text-black" id="timeNow"></p>
+             <div class="box has-background-info mt-6 mr-6">
+               <p class="bd-notification has-text-centered title is-2 is-family-code has-text-white" id="timeNow"></p>
               <div class="columns is-mobile">
                 <div class="column">
-                  <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-black" id="tempNow"></p>
+                  <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white" id="tempNow"></p>
                 </div>
                   <div class="column">
-                    <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-black" id="windNow"></p>
+                    <p class="bd-notification has-text-centered subtitle is-2 is-family-code has-text-white" id="windNow"></p>
                   </div>
               </div>
            </section>
@@ -82,12 +33,4 @@
          </figure>
        </section>
      </div>
-
-     
    </main>
-
-   
-   <footer class="columns is-centered has-background-info">
-   </footer>
-</body>
-</html>
